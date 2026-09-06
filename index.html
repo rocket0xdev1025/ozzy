@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pushin' 🅿️ | $🅿️</title>
+    <meta
+      name="description"
+      content="Pushin' 🅿️ ($🅿️) — the fire meme on Robinhood Chain. Buy with Robinhood ETH. Keep pushing."
+    />
+    <meta property="og:title" content="Pushin' 🅿️ | $🅿️" />
+    <meta
+      property="og:description"
+      content="Keep pushing. $🅿️ on Robinhood Chain. Buy with Robinhood ETH."
+    />
+    <meta property="og:image" content="banner.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ozzypushin" />
+    <meta name="theme-color" content="#052e16" />
+    <link rel="icon" href="logo.jpg" type="image/jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@600;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              pine: {
+                950: "#03140c",
+                900: "#052010",
+                800: "#0a331c",
+                700: "#14532d",
+                500: "#22c55e",
+                400: "#4ade80",
+                300: "#86efac",
+              },
+              hood: "#00c805",
+              flame: {
+                50: "#fff8e7",
+                100: "#ffefc2",
+                200: "#ffe566",
+                300: "#ffb347",
+                400: "#ff8a1a",
+                500: "#ff6a00",
+                600: "#e03d00",
+                700: "#c2410c",
+              },
+            },
+            fontFamily: {
+              cinzel: ["Cinzel", "Georgia", "serif"],
+              anton: ["Anton", "Impact", "sans-serif"],
+              outfit: ["Outfit", "system-ui", "sans-serif"],
+            },
+            dropShadow: {
+              fire: "0 0 28px rgba(255, 106, 0, 0.7)",
+              ember: "0 0 12px rgba(255, 179, 71, 0.85)",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --ca: "0x2Ff153bA4591d1B134E1e2ef42Fd897d2E686cC3";
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Outfit, system-ui, sans-serif;
+        background: #03140c;
+        color: #ffefc2;
+      }
+
+      ::selection {
+        background: #ff6a00;
+        color: #03140c;
+      }
+
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #03140c;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #ffb347, #ff6a00 60%, #14532d);
+        border-radius: 99px;
+      }
+
+      .bg-stage {
+        background:
+          radial-gradient(1200px 700px at 50% -10%, rgba(255, 106, 0, 0.18), transparent 55%),
+          radial-gradient(900px 500px at 110% 20%, rgba(0, 200, 5, 0.14), transparent 50%),
+          radial-gradient(800px 480px at -10% 80%, rgba(34, 197, 94, 0.16), transparent 50%),
+          radial-gradient(ellipse at 50% 120%, rgba(224, 61, 0, 0.22), transparent 45%),
+          linear-gradient(180deg, #052010 0%, #03140c 40%, #04180e 100%);
+      }
+
+      .noise {
+        pointer-events: none;
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        opacity: 0.07;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+      }
+
+      .fire-text {
+        background: linear-gradient(
+          180deg,
+          #fff8e7 0%,
+          #ffe566 16%,
+          #ffb347 42%,
+          #ff6a00 72%,
+          #e03d00 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 0 18px rgba(255, 106, 0, 0.55));
+      }
+
+      /* Color-emoji glyphs vanish under background-clip:text + transparent fill.
+         Keep the parking-P ticker on an emoji font stack so the project name stays visible. */
+      .p-mark {
+        font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji",
+          "Twemoji Mozilla", "EmojiOne Color", sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-variant-emoji: emoji;
+        color: #ffe566;
+        -webkit-text-fill-color: #ffe566;
+        background: none;
+        -webkit-background-clip: border-box;
+        background-clip: border-box;
+        filter: drop-shadow(0 0 16px rgba(255, 106, 0, 0.7));
+        line-height: 1;
+      }
+
+      .flicker {
+        animation: flicker 2.8s ease-in-out infinite;
+      }
+
+      @keyframes flicker {
+        0%,
+        100% {
+          filter: drop-shadow(0 0 16px rgba(255, 106, 0, 0.55))
+            drop-shadow(0 0 40px rgba(224, 61, 0, 0.35));
+        }
+        40% {
+          filter: drop-shadow(0 0 10px rgba(255, 179, 71, 0.4))
+            drop-shadow(0 0 28px rgba(255, 106, 0, 0.25));
+        }
+        62% {
+          filter: drop-shadow(0 0 26px rgba(255, 138, 26, 0.8))
+            drop-shadow(0 0 54px rgba(224, 61, 0, 0.5));
+        }
+      }
+
+      .logo-ring {
+        box-shadow:
+          0 0 0 2px rgba(255, 179, 71, 0.7),
+          0 0 28px rgba(255, 106, 0, 0.55),
+          0 0 64px rgba(224, 61, 0, 0.28),
+          inset 0 0 24px rgba(255, 106, 0, 0.2);
+      }
+
+      .molten-border {
+        position: relative;
+        background: linear-gradient(180deg, rgba(5, 32, 16, 0.92), rgba(3, 20, 12, 0.96));
+      }
+
+      .molten-border::before {
+        content: "";
+        position: absolute;
+        inset: -1.5px;
+        border-radius: inherit;
+        padding: 1.5px;
+        background: linear-gradient(
+          130deg,
+          #ffe566,
+          #ff6a00 28%,
+          #00c805 52%,
+          #ff8a1a 76%,
+          #ffe566
+        );
+        background-size: 240% 240%;
+        animation: molten 7s linear infinite;
+        -webkit-mask:
+          linear-gradient(#000 0 0) content-box,
+          linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+
+      @keyframes molten {
+        to {
+          background-position: 240% 0;
+        }
+      }
+
+      .btn-buy {
+        background: linear-gradient(180deg, #ffe566 0%, #ffb347 28%, #ff6a00 70%, #e03d00 100%);
+        color: #1a0a00;
+        box-shadow:
+          0 8px 0 #7a1f00,
+          0 12px 28px rgba(255, 106, 0, 0.35);
+      }
+      .btn-buy:hover {
+        transform: translateY(1px);
+        box-shadow:
+          0 7px 0 #7a1f00,
+          0 16px 32px rgba(255, 106, 0, 0.5);
+      }
+      .btn-buy:active {
+        transform: translateY(6px);
+        box-shadow: 0 2px 0 #7a1f00;
+      }
+
+      .btn-chart {
+        background: linear-gradient(180deg, rgba(20, 83, 45, 0.7), rgba(3, 20, 12, 0.9));
+        color: #ffe566;
+        box-shadow:
+          0 0 0 1.5px rgba(255, 179, 71, 0.55),
+          0 8px 0 #0a331c,
+          0 12px 24px rgba(0, 0, 0, 0.35);
+      }
+      .btn-chart:hover {
+        color: #fff8e7;
+        box-shadow:
+          0 0 0 1.5px #ffb347,
+          0 7px 0 #0a331c,
+          0 0 24px rgba(255, 106, 0, 0.35);
+      }
+
+      .heat-floor {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 180px;
+        background: linear-gradient(
+          180deg,
+          transparent,
+          rgba(255, 106, 0, 0.12) 40%,
+          rgba(224, 61, 0, 0.18)
+        );
+        pointer-events: none;
+      }
+
+      .flame-bar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -2px;
+        height: 70px;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 80' preserveAspectRatio='none'%3E%3Cpath fill='%23ff6a00' d='M0 80 L0 50 Q50 10 100 48 T200 50 T300 42 T400 55 T500 38 T600 52 T700 40 T800 56 T900 36 T1000 50 T1100 42 T1200 50 L1200 80 Z'/%3E%3Cpath fill='%23ffb347' d='M0 80 L0 60 Q60 28 120 58 T240 60 T360 52 T480 62 T600 50 T720 60 T840 54 T960 62 T1080 52 T1200 60 L1200 80 Z'/%3E%3Cpath fill='%2303140c' d='M0 80 L0 70 Q80 50 160 70 T320 70 T480 64 T640 72 T800 66 T960 72 T1120 66 T1200 72 L1200 80 Z'/%3E%3C/svg%3E")
+          center / 100% 100% no-repeat;
+        animation: flame-shift 3.5s ease-in-out infinite alternate;
+        pointer-events: none;
+        opacity: 0.9;
+      }
+
+      @keyframes flame-shift {
+        from {
+          transform: scaleX(1) translateY(0);
+        }
+        to {
+          transform: scaleX(1.04) translateY(-4px);
+        }
+      }
+
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: marquee 28s linear infinite;
+      }
+
+      @keyframes marquee {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      .step-num {
+        background: linear-gradient(180deg, #ffe566, #ff6a00);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      #embers {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 40;
+      }
+
+      .nav-glass {
+        background: rgba(3, 20, 12, 0.72);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(255, 179, 71, 0.18);
+      }
+
+      .ca-chip {
+        font-variant-ligatures: none;
+        letter-spacing: 0.02em;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .flicker,
+        .marquee-track,
+        .molten-border::before,
+        .flame-bar {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-stage min-h-screen overflow-x-hidden">
+    <div class="noise" aria-hidden="true"></div>
+    <canvas id="embers" aria-hidden="true"></canvas>
+
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-flame-400 focus:px-4 focus:py-2 focus:text-pine-950"
+      >Skip to content</a
+    >
+
+    <header class="nav-glass sticky top-0 z-50">
+      <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
+        <a href="#top" class="flex items-center gap-3">
+          <img
+            src="logo.jpg"
+            alt="Pushin' 🅿️ logo"
+            class="h-11 w-11 rounded-xl object-cover logo-ring"
+          />
+          <span class="font-cinzel text-lg font-bold tracking-wide sm:text-xl"
+            >Pushin' 🅿️</span
+          >
+        </a>
+
+        <nav class="hidden items-center gap-7 text-sm font-semibold text-flame-100 md:flex">
+          <a href="#about" class="transition hover:text-flame-300">About</a>
+          <a href="#buy" class="transition hover:text-flame-300">How to Buy</a>
+          <a href="#chart" class="transition hover:text-flame-300">Chart</a>
+          <a
+            href="https://x.com/ozzypushin"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-full border border-flame-400/30 bg-black/40 px-3 py-1.5 transition hover:border-flame-300 hover:bg-black/70"
+          >
+            <img src="x.png" alt="" class="h-4 w-4 object-contain" />
+            <span>@ozzypushin</span>
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <a
+            href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0x2Ff153bA4591d1B134E1e2ef42Fd897d2E686cC3"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-buy hidden rounded-full px-5 py-2 text-sm font-extrabold uppercase tracking-wider sm:inline-flex"
+            >Buy Now</a
+          >
+          <button
+            id="menuBtn"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-flame-400/40 text-flame-200 md:hidden"
+            aria-label="Open menu"
+            aria-expanded="false"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="mobileMenu" class="hidden border-t border-flame-400/20 px-4 pb-4 md:hidden">
+        <div class="flex flex-col gap-3 pt-3 text-sm font-semibold text-flame-100">
+          <a href="#about">About</a>
+          <a href="#buy">How to Buy</a>
+          <a href="#chart">Chart</a>
+          <a
+            href="https://x.com/ozzypushin"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2"
+          >
+            <img src="x.png" alt="" class="h-4 w-4" />
+            @ozzypushin
+          </a>
+          <a
+            href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0x2Ff153bA4591d1B134E1e2ef42Fd897d2E686cC3"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-buy mt-1 inline-flex justify-center rounded-full px-5 py-2.5 text-sm font-extrabold uppercase tracking-wider"
+            >Buy Now</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="top" class="relative overflow-hidden">
+        <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-24 pt-12 lg:grid-cols-[1.05fr_0.95fr] lg:pt-16">
+          <div>
+            <p
+              class="mb-4 inline-flex items-center gap-2 rounded-full border border-hood/40 bg-pine-800/60 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.22em] text-hood"
+            >
+              <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-hood"></span>
+              Live on Robinhood Chain
+            </p>
+            <h1 class="font-anton text-6xl leading-[0.9] tracking-wide sm:text-7xl lg:text-8xl">
+              <span class="fire-text flicker">PUSHIN'</span><br />
+              <span class="flicker">🅿️</span>
+            </h1>
+            <p class="mt-5 max-w-xl text-lg font-medium text-flame-100/90 sm:text-xl">
+              The P is on fire. The mountain does not care.
+              <span class="text-flame-300">Keep pushing $🅿️.</span>
+            </p>
+            <p class="mt-3 max-w-xl text-sm leading-relaxed text-pine-300">
+              A community meme on Robinhood Chain. Swap Robinhood ETH for $🅿️. Simple token. Simple
+              story. Relentless energy.
+            </p>
+
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <button
+                id="copyCa"
+                type="button"
+                class="ca-chip molten-border inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-left text-xs font-semibold text-flame-100 sm:text-sm"
+                title="Copy contract address"
+              >
+                <span class="text-[10px] uppercase tracking-[0.18em] text-flame-300">CA</span>
+                <span id="caLabel" class="font-mono">0x2Ff1...6cC3</span>
+                <svg id="copyIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="11" height="11" rx="2" />
+                  <path d="M5 15V5a2 2 0 0 1 2-2h10" />
+                </svg>
+              </button>
+              <span
+                id="copied"
+                class="hidden text-xs font-bold uppercase tracking-widest text-hood"
+                >Copied</span
+              >
+            </div>
+
+            <div class="mt-7 flex flex-wrap gap-4">
+              <a
+                href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0x2Ff153bA4591d1B134E1e2ef42Fd897d2E686cC3"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-buy inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-base font-extrabold uppercase tracking-widest"
+              >
+                Buy Now
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </a>
+              <a
+                href="https://dexscreener.com/robinhood/0x2f99fc4916ee4b34df2bd31903a87624ddf1156a9ef6fdf063e66ea8b7a1aff7"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-chart inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-base font-extrabold uppercase tracking-widest"
+              >
+                Chart
+              </a>
+              <a
+                href="https://x.com/ozzypushin"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center rounded-full border border-white/10 bg-black p-3.5 transition hover:border-flame-400/60"
+                aria-label="Pushin' on X"
+              >
+                <img src="x.png" alt="X" class="h-5 w-5 object-contain" />
+              </a>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="absolute -inset-8 rounded-full bg-flame-500/20 blur-3xl"></div>
+            <div class="relative mx-auto w-full max-w-md">
+              <img
+                src="logo.jpg"
+                alt="Flaming P logo for Pushin' 🅿️"
+                class="flicker relative z-10 w-full rounded-[2rem] object-cover logo-ring"
+              />
+              <div
+                class="absolute -bottom-5 left-1/2 z-20 w-[90%] -translate-x-1/2 rounded-2xl border border-flame-400/30 bg-pine-950/80 px-4 py-3 text-center backdrop-blur"
+              >
+                <p class="font-cinzel text-sm font-bold tracking-wide text-flame-200">
+                  <span class="p-mark">$🅿️</span>
+                </p>
+                <p class="mt-1 text-[11px] uppercase tracking-[0.2em] text-pine-300">
+                  Ticker of the climb
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative mx-auto max-w-6xl px-4 pb-8">
+          <div class="molten-border overflow-hidden rounded-[1.6rem]">
+            <img
+              src="banner.png"
+              alt="Pushin' 🅿️ banner — keep pushing the P up the mountain"
+              class="h-auto w-full object-cover"
+            />
+          </div>
+        </div>
+
+        <p class="mx-auto max-w-3xl px-4 pb-16 text-center text-sm italic text-flame-200/80">
+          “Not financial advice. All views are my own. RTs &amp; QTs do not mean endorsement.”
+        </p>
+
+        <div class="heat-floor"></div>
+        <div class="flame-bar"></div>
+      </section>
+
+      <div class="relative z-10 overflow-hidden border-y border-flame-400/20 bg-pine-900/80">
+        <div class="marquee-track py-3 text-xs font-extrabold uppercase tracking-[0.35em] text-flame-300">
+          <span class="px-6">Keep pushing</span>
+          <span class="px-6 text-hood">•</span>
+          <span class="px-6">$🅿️</span>
+          <span class="px-6 text-hood">•</span>
+          <span class="px-6">Robinhood ETH</span>
+          <span class="px-6 text-hood">•</span>
+          <span class="px-6">Never stop</span>
+          <span class="px-6 text-hood">•</span>
+          <span class="px-6">Fire on the mountain</span>
+          <span class="px-6 text-hood">•</span>
+          <span class="px-6">Keep pushing</span>
+          <span class="px-6 text-hood">•</span>
+          <span class="px-6">$🅿️</span>
+          <span class="px-6 text-hood">•</span>
+          <span class="px-6">Robinhood ETH</span>
+          <span class="px-6 text-hood">•</span>
+          <span class="px-6">Never stop</span>
+          <span class="px-6 text-hood">•</span>
+          <span class="px-6">Fire on the mountain</span>
+          <span class="px-6 text-hood">•</span>
+        </div>
+      </div>
+
+      <section id="about" class="relative mx-auto max-w-6xl px-4 py-20">
+        <p class="text-xs font-bold uppercase tracking-[0.32em] text-hood">The climb</p>
+        <h2 class="mt-2 font-anton text-4xl tracking-wide sm:text-5xl">
+          <span class="fire-text">About Pushin'</span>
+          <span class="p-mark" aria-label="P">🅿️</span>
+        </h2>
+        <p class="mt-4 max-w-2xl text-base leading-relaxed text-flame-100/85">
+          Pushin' 🅿️ is the meme of the grind. One letter. One mountain. Infinite attempts. $🅿️ lives
+          on Robinhood Chain — a community token you buy with Robinhood ETH. No boardroom. No
+          lecture. Just heat.
+        </p>
+
+        <div class="mt-10 grid gap-5 md:grid-cols-3">
+          <article class="molten-border rounded-3xl p-6">
+            <p class="font-anton text-3xl fire-text">FIRE</p>
+            <h3 class="mt-2 font-cinzel text-lg font-bold text-flame-100">Logo energy</h3>
+            <p class="mt-2 text-sm leading-relaxed text-pine-300">
+              The flaming P is the whole brand. Content burns gold and ember. Background stays
+              Robinhood green. Forest on fire.
+            </p>
+          </article>
+          <article class="molten-border rounded-3xl p-6">
+            <p class="font-anton text-3xl fire-text">CHAIN</p>
+            <h3 class="mt-2 font-cinzel text-lg font-bold text-flame-100">Robinhood ETH</h3>
+            <p class="mt-2 text-sm leading-relaxed text-pine-300">
+              Gas and swaps run on ETH on Robinhood Chain (ID 4663). Bridge ETH, then swap for $🅿️
+              on Uniswap.
+            </p>
+          </article>
+          <article class="molten-border rounded-3xl p-6">
+            <p class="font-anton text-3xl fire-text">PUSH</p>
+            <h3 class="mt-2 font-cinzel text-lg font-bold text-flame-100">Never stop</h3>
+            <p class="mt-2 text-sm leading-relaxed text-pine-300">
+              The banner is the thesis: keep pushing the P. Bags get empty. The mountain stays. We
+              climb anyway.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="buy" class="relative mx-auto max-w-6xl px-4 py-8 pb-20">
+        <p class="text-xs font-bold uppercase tracking-[0.32em] text-hood">The path</p>
+        <h2 class="mt-2 font-anton text-4xl tracking-wide fire-text sm:text-5xl">How to Buy</h2>
+        <p class="mt-4 max-w-2xl text-base leading-relaxed text-flame-100/85">
+          Four steps. Buy $🅿️ using Robinhood ETH. Always paste the contract from this site — never
+          search by ticker alone.
+        </p>
+
+        <ol class="mt-10 grid gap-5 md:grid-cols-2">
+          <li class="molten-border flex gap-4 rounded-3xl p-6">
+            <span class="step-num font-anton text-5xl leading-none">01</span>
+            <div>
+              <h3 class="font-cinzel text-lg font-bold text-flame-100">Get a wallet</h3>
+              <p class="mt-2 text-sm leading-relaxed text-pine-300">
+                Install MetaMask, Robinhood Wallet, Phantom, or any EVM wallet. Write down your seed
+                phrase and never share it.
+              </p>
+            </div>
+          </li>
+          <li class="molten-border flex gap-4 rounded-3xl p-6">
+            <span class="step-num font-anton text-5xl leading-none">02</span>
+            <div>
+              <h3 class="font-cinzel text-lg font-bold text-flame-100">Open Robinhood Chain</h3>
+              <p class="mt-2 text-sm leading-relaxed text-pine-300">
+                Switch the network to Robinhood Chain. Chain ID
+                <span class="font-semibold text-flame-300">4663</span>. Currency is ETH. Gas is paid
+                in ETH.
+              </p>
+            </div>
+          </li>
+          <li class="molten-border flex gap-4 rounded-3xl p-6">
+            <span class="step-num font-anton text-5xl leading-none">03</span>
+            <div>
+              <h3 class="font-cinzel text-lg font-bold text-flame-100">Get Robinhood ETH</h3>
+              <p class="mt-2 text-sm leading-relaxed text-pine-300">
+                Bridge or buy ETH on Robinhood Chain. Keep a little extra for gas so the swap — and
+                a later exit — can actually fire.
+              </p>
+            </div>
+          </li>
+          <li class="molten-border flex gap-4 rounded-3xl p-6">
+            <span class="step-num font-anton text-5xl leading-none">04</span>
+            <div>
+              <h3 class="font-cinzel text-lg font-bold text-flame-100">Swap for $🅿️</h3>
+              <p class="mt-2 text-sm leading-relaxed text-pine-300">
+                Hit Buy Now, connect, and swap Robinhood ETH for $🅿️. Paste the CA from this page
+                before you confirm.
+              </p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a
+            href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0x2Ff153bA4591d1B134E1e2ef42Fd897d2E686cC3"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-buy inline-flex items-center rounded-full px-7 py-3.5 text-base font-extrabold uppercase tracking-widest"
+            >Buy Now</a
+          >
+          <a
+            href="https://dexscreener.com/robinhood/0x2f99fc4916ee4b34df2bd31903a87624ddf1156a9ef6fdf063e66ea8b7a1aff7"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-chart inline-flex items-center rounded-full px-7 py-3.5 text-base font-extrabold uppercase tracking-widest"
+            >Chart</a
+          >
+          <button
+            id="copyCa2"
+            type="button"
+            class="ca-chip molten-border inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-flame-100"
+          >
+            Copy CA
+          </button>
+        </div>
+      </section>
+
+      <section id="chart" class="relative mx-auto max-w-6xl px-4 pb-20">
+        <p class="text-xs font-bold uppercase tracking-[0.32em] text-hood">The lookout</p>
+        <h2 class="mt-2 font-anton text-4xl tracking-wide fire-text sm:text-5xl">Live Chart</h2>
+        <p class="mt-3 text-sm text-pine-300">Dexscreener embed for $🅿️ on Robinhood Chain.</p>
+        <div class="molten-border mt-6 overflow-hidden rounded-[1.6rem]">
+          <iframe
+            title="Dexscreener chart for Pushin' 🅿️"
+            src="https://dexscreener.com/robinhood/0x2f99fc4916ee4b34df2bd31903a87624ddf1156a9ef6fdf063e66ea8b7a1aff7?embed=1&theme=dark&trades=0&info=0"
+            class="h-[420px] w-full bg-pine-950 sm:h-[560px] lg:h-[640px]"
+            allow="clipboard-write"
+          ></iframe>
+        </div>
+      </section>
+    </main>
+
+    <footer class="relative border-t border-flame-400/20 bg-pine-950/90">
+      <div class="mx-auto flex max-w-6xl flex-col items-center gap-5 px-4 py-12 text-center">
+        <img src="logo.jpg" alt="" class="h-14 w-14 rounded-xl object-cover logo-ring" />
+        <p class="font-cinzel text-xl font-bold">
+          <span class="fire-text">Pushin'</span>
+          <span class="p-mark" aria-label="P">🅿️</span>
+          <span class="fire-text"> · </span>
+          <span class="p-mark">$🅿️</span>
+        </p>
+        <div class="flex items-center gap-3">
+          <a
+            href="https://x.com/ozzypushin"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-semibold text-white"
+          >
+            <img src="x.png" alt="" class="h-4 w-4" />
+            @ozzypushin
+          </a>
+          <a
+            href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0x2Ff153bA4591d1B134E1e2ef42Fd897d2E686cC3"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm font-bold uppercase tracking-widest text-flame-300 hover:text-flame-100"
+            >Buy Now</a
+          >
+        </div>
+        <p class="max-w-xl text-xs leading-relaxed text-pine-300">
+          Not financial advice. All views are my own. RTs &amp; QTs do not mean endorsement.
+        </p>
+        <p class="text-[11px] text-pine-700">
+          Pushin' 🅿️ is a community meme. Not affiliated with Robinhood Markets, Inc.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      const CA = "0x2Ff153bA4591d1B134E1e2ef42Fd897d2E686cC3";
+
+      async function copyCA() {
+        try {
+          await navigator.clipboard.writeText(CA);
+        } catch {
+          const field = document.createElement("textarea");
+          field.value = CA;
+          document.body.appendChild(field);
+          field.select();
+          document.execCommand("copy");
+          field.remove();
+        }
+        const toast = document.getElementById("copied");
+        const label = document.getElementById("caLabel");
+        toast.classList.remove("hidden");
+        if (label) label.textContent = "Copied";
+        setTimeout(() => {
+          toast.classList.add("hidden");
+          if (label) label.textContent = "0x2Ff1...6cC3";
+        }, 1600);
+      }
+
+      document.getElementById("copyCa").addEventListener("click", copyCA);
+      document.getElementById("copyCa2").addEventListener("click", copyCA);
+
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      menuBtn.addEventListener("click", () => {
+        const open = mobileMenu.classList.toggle("hidden") === false;
+        menuBtn.setAttribute("aria-expanded", String(open));
+      });
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          menuBtn.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      const canvas = document.getElementById("embers");
+      const ctx = canvas.getContext("2d");
+      let embers = [];
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener("resize", resize);
+
+      function spawn() {
+        return {
+          x: Math.random() * canvas.width,
+          y: canvas.height + Math.random() * 40,
+          r: Math.random() * 2.2 + 0.4,
+          vy: -(Math.random() * 1.4 + 0.4),
+          vx: (Math.random() - 0.5) * 0.5,
+          a: Math.random() * 0.7 + 0.2,
+          hue: Math.random() > 0.2 ? 28 + Math.random() * 18 : 120,
+        };
+      }
+
+      if (!reduce) {
+        embers = Array.from({ length: 70 }, spawn);
+        function tick() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          embers.forEach((p) => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.a -= 0.0025;
+            if (p.y < -10 || p.a <= 0) Object.assign(p, spawn());
+            ctx.beginPath();
+            ctx.fillStyle =
+              p.hue > 80
+                ? `rgba(0, 200, 5, ${p.a * 0.45})`
+                : `rgba(255, ${120 + p.hue * 2}, 20, ${p.a})`;
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fill();
+          });
+          requestAnimationFrame(tick);
+        }
+        tick();
+      }
+    </script>
+  </body>
+</html>
